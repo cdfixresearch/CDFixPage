@@ -1,0 +1,284 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0056)https://learning-zone.github.io/website-templates/plain/ -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Web Page Design by James Koster - http://www.jameskoster.co.uk -->
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!--Load the Google chart-->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+	<title>Context-aware Dual Learning for Automated Program Repair</title>
+	<link href="./1.css" rel="stylesheet" type="text/css">
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1027.0" data-gr-ext-installed="">
+	<a name="top" id="top"></a>
+	<center>
+		<div id="menu">
+			<a href="https://learning-zone.github.io/website-templates/plain/#top">home</a> <a
+				href="https://learning-zone.github.io/website-templates/plain/#ABSTRACT">introduction</a> <a
+				href="https://learning-zone.github.io/website-templates/plain/#css">RQ1</a> <a
+				href="https://learning-zone.github.io/website-templates/plain/#about">about the author</a>
+		</div>
+
+		<div id="header">
+			<h1>CDFix</h1>
+			<h2>Context-aware Dual Learning for Automated Program Repair</h2>
+		</div>
+
+		<div id="content">
+
+			<p class="introduction">
+				In this work, we conjecture that correct learning
+				of contexts can benefit the learning of code transformations and
+				vice versa in auto-fixing context-dependent bugs. We introduce
+				CDFix, a context-aware dual learning APR model, which dedicates
+				one model to learn the bug-fixing code transformations (CTL) and
+				another one to learn the corresponding surrounding code contexts
+				(CCL).
+			</p>
+
+
+
+			<div id="mainbar">
+				<h1><a name="ABSTRACT" id="ABSTRACT"></a>ABSTRACT</h1>
+
+				<p>
+					Recent advances in deep learning (DL) have helped improve the
+					performance of the DL-based Automated Program Repair (APR)
+					approaches. The bug-fixing changes in APR often depend on the surrounding code context. Despite
+					their successes, the state-of-the-art
+					DL-based APR approaches still have limitations in the integration
+					of code contexts in learning bug fixes. The limitations lead to the
+					ineffectiveness of those DL-based approaches in learning to auto-fix
+					context-dependent bugs. In this work, we conjecture that correct
+					learning of contexts can benefit the learning of code transformations and vice versa in APR. We
+					introduce CDFix, a context-aware
+					dual learning APR model, which dedicates one model to learn the
+					bug-fixing code transformations (CTL) and another one to learn the
+					corresponding surrounding code contexts (CCL) for the transformations. Instead of cascading them,
+					we train them simultaneously
+					with soft-sharing parameters via a cross-stitch unit to explicitly
+					model the impacts of contexts on fixing learning and vice versa.
+					We conducted several experiments to evaluate CDFix on three
+					different datasets: Defects4J [1] (395 bugs), Bugs.jar [36] (1,158
+					bugs), and BigFix [19] (+4.9M methods and 1.8M buggy ones). We
+					compared CDFix against several state-of-the-art DL-based APR
+					tools. Our results show that CDFix can fix 16.7%,12.1%, and 14.6%
+					more bugs than the best-performance DL-based baseline model
+					with only the top-1 patches in Defects4J, Bugs.jar, and BigFix, respectively. In Defects4J, it
+					improves over the baseline models from
+					16.7%–194.7%. In Bugs.jar and BigFix, it fixes 26.4% and 27.7% of
+					the total fixed bugs that were missed by the best DL-based baseline.
+				</p>
+
+				<h1><a name="RQ" id="RQ"></a>Research Questions</h1>
+				<br>
+
+				<h3>RQ1: Comparison Results with DL-based APR Approaches on Defect4J. <a href="https://1drv.ms/t/s!Anaa8eXq6uh9apZJdS_kpLVm94U?e=AveuBB">RAW DATA is avaliable.</a></h3> 
+				<script type="text/javascript">
+					google.charts.load('current', { 'packages': ['bar'] });
+					google.charts.setOnLoadCallback(drawTB1);
+
+					function drawTB1() {
+						var TB1_data = google.visualization.arrayToDataTable([
+
+							['Projects', 'SequenceR', 'DLFix', 'CoCoNuT', 'CURE', 'CDFix'],
+							['Chart', 4, 7, 8, 7, 9],
+							['Closure', 5, 7, 7, 9, 12],
+							['Lang', 2, 6, 6, 7, 9],
+							['Math', 8, 18, 20, 21, 22],
+							['Mockito', 0, 1, 2, 2, 2],
+							['Time', 0, 1, 2, 3, 3],
+							['Total', 19, 40, 44, 48, 56]
+						]);
+
+						var options = {
+							chart: {
+								subtitle: 'The number represent the correct fixed compared with the fixes by developers in the ground truth.',
+							}
+						};
+
+						var TB1_chart = new google.charts.Bar(document.getElementById('TB1'));
+
+						TB1_chart.draw(TB1_data, options);
+					}
+				</script>
+				<div id="TB1" style="width: 800px; height: 500px;" class="center"></div>
+				<br>
+
+
+				<script type="text/javascript">
+					google.charts.load('current', { 'packages': ['corechart'] });
+					google.charts.setOnLoadCallback(drawTB);
+
+					function drawTB() {
+						var TB2_data = google.visualization.arrayToDataTable([
+
+							['Type', 'patches that match ground truth and pass all test cases',
+								'patches that do not match ground truth but can pass all test cases'],
+							['SequenceR',	19,  6],
+							['DLFix', 		40, 32],
+							['CoCoNuT', 	44, 41],
+							['CURE', 		48, 44],
+							['CDFix', 		56, 40]
+						]);
+						
+						
+						var options = {
+							isStacked: true,
+							legend: {position: 'top'},
+						};
+
+						var TB_chart = new google.visualization.ColumnChart(document.getElementById('TB2'));
+						TB_chart.draw(TB2_data, options);
+					}
+				</script>
+				<div id="TB2" style="width: 700px; height: 500px;" class="center"></div>
+				<br>
+
+				<h3> RQ2. Comparison Results with DL-based APR Approaches on Large Datasets using Top-K.</h3>
+				<script type="text/javascript">
+					google.charts.load('current', { 'packages': ['corechart'] });
+					google.charts.setOnLoadCallback(drawChart_TB4_First);
+					google.charts.setOnLoadCallback(drawChart_TB4_Second);
+
+
+					function drawChart_TB4_First() {
+						var TB2_data_1 = google.visualization.arrayToDataTable([
+							['Tools', 'CDFix',  'CODIT', 'Tufano(\'19)', 'SequenceR', 'DLFix', 'CoCoNuT', 'CURE' ],
+							['Top1', 14.8, 7.4, 6.5, 8.8, 10.7, 12.1, 13.2],
+							['Top5', 17.1, 10.3, 9.7, 10.8, 12.1, 14.2, 14.9],
+							['Top10', 18.5, 12.5, 11.6, 12.9, 14.6, 16.5, 17.4]
+						]);
+
+						var options = {
+							title: 'Dataset: Bugs.jar(1,158 bugs), result in %',
+							pointSize: 10,
+						};
+
+						var chart = new google.visualization.LineChart(document.getElementById('TB2_1'));
+
+						chart.draw(TB2_data_1, options);
+					}
+
+					function drawChart_TB4_Second() {
+						var TB_data_2 = google.visualization.arrayToDataTable([
+							['Tools', 'CDFix',  'CODIT', 'Tufano(\'19)', 'SequenceR', 'DLFix', 'CoCoNuT', 'CURE'],
+							['Top1', 14.9, 7.8, 4.1, 8.3, 11.3, 12.4, 13.0],
+							['Top5', 16.1, 8.5, 6.5, 9.2, 11.8, 13.5, 13.8],
+							['Top10', 16.8, 9.2, 9.4, 10.3, 12.7, 14.1, 14.5]
+						]);
+
+						var options = {
+							title: 'Dataset: BigFix(2,176 bugs), result in %',
+							pointSize: 10,
+						};
+
+						var chart = new google.visualization.LineChart(document.getElementById('TB2_2'));
+
+						chart.draw(TB_data_2, options);
+					}
+
+				</script>
+                <div id="TB2_1" style="width: 800px; height: 600px;" ></div>
+				<div id="TB2_2" style="width: 800px; height: 600px;" ></div><br>
+
+				<h3> RQ3.Overlapping Analysis.</h3>
+
+				<script type="text/javascript">
+					google.charts.load('current', { 'packages': ['corechart'] });
+					google.charts.setOnLoadCallback(drawTB);
+
+					function drawTB() {
+						var TB3_data = google.visualization.arrayToDataTable([
+
+							['Tools', 'Projects shown in x axis',  'CDFix', { role: 'annotation' }],
+							['CODIT', 6, 91, ''],
+							['Tufano\'19', 5,  101, ''],
+							['SequenceR',	7,  76, ''],
+							['DLFix', 		19,  66, ''],
+							['CoCoNuT', 	20,  51, ''],
+							['CURE', 		27, 45, '']
+						]);
+						
+						
+						var options = {
+							title: 'Unique bugs that the current approach can fix in Bugs.jar',
+							isStacked: true,
+							legend: {position: 'top'},
+							bar: { groupWidth: '50%' },
+						};
+
+						var TB_chart = new google.visualization.ColumnChart(document.getElementById('TB3_1'));
+						TB_chart.draw(TB3_data, options);
+					}
+				</script>
+				<div id="TB3_1" style="width: 900px; height: 500px;" ></div>
+
+				<script type="text/javascript">
+					google.charts.load('current', { 'packages': ['corechart'] });
+					google.charts.setOnLoadCallback(drawTB);
+
+					function drawTB() {
+						var TB3_data = google.visualization.arrayToDataTable([
+
+							['Tools', 'Projects shown in x axis',  'CDFix', { role: 'annotation' }],
+							['CODIT', 13, 165, ''],
+							['Tufano\'19', 4, 237, ''],
+							['SequenceR',	23, 164, ''],
+							['DLFix', 		35, 111, ''],
+							['CoCoNuT', 	44, 96, ''],
+							['CURE', 		50 ,89, '']
+						]);
+						
+						
+						var options = {
+							title: 'Unique bugs that the current approach can fix in BigFix',
+							isStacked: true,
+							legend: {position: 'top'},
+							bar: { groupWidth: '50%' },
+						};
+
+						var TB_chart = new google.visualization.ColumnChart(document.getElementById('TB3_2'));
+						TB_chart.draw(TB3_data, options);
+					}
+				</script>
+				<div id="TB3_2" style="width: 900px; height: 500px;" ></div><br>
+
+
+				<h3>  RQ4.Impact Analysis Results of Dual Learning on Performance using BigFix Dataset.</h3>
+				<script type="text/javascript">
+					google.charts.load('current', { 'packages': ['corechart'] });
+					google.charts.setOnLoadCallback(drawTB);
+
+					function drawTB() {
+						var TB_data = google.visualization.arrayToDataTable([
+							['Tools', 'CDFix', 'Transformation-only Model',  'Cascading Model'],
+							['Top1', 14.9, 7.1, 11.7],
+							['Top5', 16.1, 8.9, 13.1],
+							['Top10', 16.8, 9.7, 14.3]
+						]);
+
+						var options = {
+							title: 'Result on the impact of our dual learning architecture on the overall CDFix’s bug-fixing performance',
+							pointSize: 10,
+						};
+
+						var chart = new google.visualization.LineChart(document.getElementById('TB4'));
+
+						chart.draw(TB_data, options);
+					}
+				</script>
+				<div id="TB4" style="width: 900px; height: 500px;" ></div>
+
+			</div>
+
+		</div>
+		<div id="footer">
+			Thank you For visiting.<br>
+			Page originally designed by <a href="http://www.sixshootermedia.com/">6ix Shooter Media</a> </div>
+	</center>
